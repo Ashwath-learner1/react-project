@@ -2,7 +2,10 @@ import React from 'react'
 
 function JewelleryAdmin() {
   return (
-    <div>JewelleryAdmin</div>
+    <div>
+       <h1>
+       JewelleryAdmin</h1> 
+    </div>
   )
 }
 

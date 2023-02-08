@@ -37,3 +37,48 @@ app.post('/login',async(req,res)=>{
         res.json("not exist")
     }
 })
+
+app.post('/register',async(req,res)=>{
+    const {Name,Age,address,AadharNo,PANno,PhoneNo,email,password}=req.body
+    const data={
+        Name:Name,
+        Age:Age,
+        address:address,
+        AadharNo:AadharNo,
+        PhoneNo:PhoneNo,
+        PANno:PANno,
+        email:email,
+        password:password
+    }
+
+    try{
+        const check=await collection.findOne({email:email,password:password})
+        
+        
+        if(check){
+            res.json('exists')
+        }
+        else{
+            res.json('not exist')
+            await collection.insertMany([data])
+        }
+    }
+    catch(e){
+        res.json("Something went wrong Try again")
+
+    }
+})
+
+app.put('/withdraw',async(req,res)=>{
+    const {email}=req.body
+
+    try{
+        const check=await collection.findOneAndUpdate({email:email},{$set:{withdrawRequest:"Yes"}})
+        
+        
+        console.log(check)
+    }
+    catch(e){
+        res.json("not exist")
+    }
+})

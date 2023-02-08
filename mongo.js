@@ -10,14 +10,45 @@ mongoose.connect(mongourl,{
 }).catch((err) => console.log(err))
 
 const newschema= new mongoose.Schema({
+   Name:{
+        type:String,
+        required:true,
+    },
+    Age:{
+        type:String,
+        required:true,
+    },
+    address:{
+        type:String,
+        required:true,
+    },
+    AadharNo:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    PANno:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    PhoneNo:{
+        type:String,
+        required:true,
+        unique:true,
+    },
     email:{
         type:String,
         required:true,
+        unique:true
     },
     password:{
         type:String,
         required:true,
+        unique:true
     },
+   
+
 
 })
 

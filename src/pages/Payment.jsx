@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     MDBBtn,
     MDBContainer, 
@@ -9,13 +9,14 @@ import {
   }
   from 'mdb-react-ui-kit';
 const Payment=()=>{
+    const [amount,setAmount]=useState(0)
+    
     return (
         <MDBContainer fluid>
             <MDBRow>
-            <MDBInput/>
-            <div>
-                <h1>Hi</h1>
-            </div>
+            <MDBInput value={amount} onChange={(e)=>setAmount(e.target.value)}/><br/>
+           
+           <MDBBtn className='h-90'>Pay Amount</MDBBtn>
             </MDBRow>
             
         </MDBContainer>
