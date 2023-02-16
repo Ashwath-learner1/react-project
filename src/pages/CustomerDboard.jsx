@@ -1,16 +1,14 @@
-import {React,useState} from 'react';
-import Sidebar from '../components/Sidebar';
+import { React, useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar";
 // import Payment from '../components/Payment';
 
-
-function App(){
-    return(
-        <div>
-            <Sidebar/>
-            
-            
-        </div>
-    )
+function App() {
+  
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  );
 }
 
 export default App;

@@ -2,9 +2,9 @@
     background-color: #060b26;
     height: 80px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    width:1600px;
+    width:1365px;
   }
   
   .menu-bars {
@@ -62,9 +62,9 @@
   .navbar-toggle {
     background-color: #060b26;
     width: 100%;
-    height: 80px;
+    height: 50px;
     display: flex;
-    justify-content: start;
+    justify-content: left;
     align-items: center;
   }
   
@@ -79,3 +79,4 @@
     min-width: 320px;
     min-height: 100vh;
   }
+

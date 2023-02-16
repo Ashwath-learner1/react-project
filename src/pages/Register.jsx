@@ -23,6 +23,7 @@ function register() {
   const [PhoneNo,setPhoneNo]=useState('')
   const history=useNavigate();
 
+
   async function Register(event) {
     event.preventDefault()
     await axios.post('http://localhost:5000/register',{
@@ -95,11 +96,13 @@ function register() {
         
         </MDBCol>
 
-        <MDBCol sm='6' className='d-none d-sm-block px-0'>
-          <img src="https://previews.123rf.com/images/teena13/teena131201/teena13120100002/11806916-full-box-of-a-gold-jewelry-on-a-white-background.jpg"
-            alt="Login image" className="w-100" style={{objectFit: 'cover', objectPosition: 'left'}} />
-        </MDBCol>
-
+        <MDBCol sm='6' className='d-flex flex-column justify-content-center px-0'>
+        
+        <img src="https://previews.123rf.com/images/teena13/teena131201/teena13120100002/11806916-full-box-of-a-gold-jewelry-on-a-white-background.jpg"
+          alt="Login image" className="w-100 d-flex fit-content" style={{objectFit: 'cover', objectPosition: 'left'}} />
+     
+      </MDBCol>
+      
       </MDBRow>
 
     </MDBContainer>

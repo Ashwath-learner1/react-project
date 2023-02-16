@@ -1,23 +1,41 @@
-import express, { json } from 'express'
+import express, { json, request } from 'express'
 const app=express()
 // import mongoose, { Collection } from 'mongoose'
 import cors from 'cors'
-// import Customer from './models/models.Customer.js'
-app.use(express.json())
-app.use(cors())
+import session from 'express-session'
+import cookieParser from 'cookie-parser'
+import passport from 'passport'
+// import bodyParser from 'body-parser'
 import collection from './mongo.js'
+// import Customer from './models/models.Customer.js'
+import jwt from 'jsonwebtoken'
+app.use(express.json())
+app.use(session(
+    {
+        key:'email',
+        secret:'secret',
+        resave:true,
+        saveUninitialized:true,
+        cookie:{
+            maxAge:30000
+        }
+    }
+    ))
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(cors())
 
 
-
+app.use(cookieParser())
+// app.use(bodyParser.urlencoded({extended:true}))
 
 
 app.listen(5000,()=>{
     console.log("Server Started!")
 })
 
-// app.get('/',async(req,res)=>{
-//     res.send({status:'ok'})
-// })
+
 
 app.post('/login',async(req,res)=>{
     const {email,password}=req.body
@@ -27,7 +45,20 @@ app.post('/login',async(req,res)=>{
         
         
         if(check){
-            res.json('exists')
+           // req.session.email=req.body.email
+            
+            console.log(req.session)
+           // res.json(req.session.email)
+           const token=jwt.sign({
+            email:check.email,
+            password:check.password,
+            name:check.Name
+           },'secret')
+           
+        
+        res.json({status:"ok",user:token})
+           
+            
         }
         else{
             res.json("not exist")
@@ -62,6 +93,7 @@ app.post('/register',async(req,res)=>{
             res.json('not exist')
             await collection.insertMany([data])
         }
+        
     }
     catch(e){
         res.json("Something went wrong Try again")
@@ -69,11 +101,32 @@ app.post('/register',async(req,res)=>{
     }
 })
 
-app.put('/withdraw',async(req,res)=>{
-    const {email}=req.body
 
+app.get('/logout',(req,res)=>{
+    // req.session.destroy((err)=>{
+       
+    //     if(err){
+    //         res.json({success:false})
+    //     }
+    //     else{
+    //         req.logout((err)=>{
+    //             if (err) console.log(`unable to logout`, err);
+    //         })
+    //         req.session=null
+    //         res.json({success:true})
+    //     }
+    // })
+    req.session=null
+    res.json({success:true})
+})
+
+app.put('/withdraw',async(req,res)=>{
+    const {request}=req.body
+   // const email=req.session.email
+    req.session.email=req.body.email
+    const email=req.session.email
     try{
-        const check=await collection.findOneAndUpdate({email:email},{$set:{withdrawRequest:"Yes"}})
+        const check=await collection.findOneAndUpdate({email:email},{$set:{withdrawRequest:request}})
         
         
         console.log(check)

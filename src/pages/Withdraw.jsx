@@ -1,29 +1,38 @@
-import axios from 'axios'
-import {React,useState} from 'react'
+import axios from "axios";
+// import Sidebar from "../components/Sidebar";
+import { React, useState } from "react";
+// import { redirect } from "react-router-dom";
 
 function Withdraw() {
-  const[email,setEmail]=useState('')
+  const request=useState('Yes')
   
-  async function withdraw(e){
-    e.preventDefault()
-    await axios.put('http://localhost:5000/withdraw',{
-      email
-    }).then(res=>{
-      console.log(res.data)
-    })
+  async function withdraw(e) {
+    e.preventDefault();
+    await axios
+      .put("http://localhost:5000/withdraw", {
+       
+        request
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   }
   return (
-   
     <>
-    <form onSubmit={withdraw} action="PUT">
-    <div>
-        <input placeholder="Enter your Email id" type="email" value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
-        <button >Withdraw</button>
-    </div>
-    </form>
-    
+      
+      
+        <div className="card-container-1">
+          <h3>Are you sure you want to withdraw the gold?</h3>
+          
+          <div className="y-n-buttons">
+            <button className="yes" onClick={withdraw}>Yes</button>
+            
+            <button className="no">No</button>
+          </div>
+        </div>
+      
     </>
-  )
+  );
 }
 
-export default Withdraw
+export default Withdraw;

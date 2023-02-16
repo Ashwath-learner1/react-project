@@ -1,0 +1,8 @@
+.header{
+    height:70px;
+    background-color: rgb(163,204,201);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font: poppins;
+}
