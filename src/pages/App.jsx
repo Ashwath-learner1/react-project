@@ -10,7 +10,7 @@ import {
 }
 from 'mdb-react-ui-kit';
 import axios from 'axios';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 
 function App() {
