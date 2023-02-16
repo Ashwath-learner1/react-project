@@ -30,10 +30,16 @@ function App() {
     }).then(res=>{
        
     
-       if(res.data.status=='ok'){
+       if(res.data.status=='ok' && res.data.user=='Customer'){
         history("/CustomerDboard")
         
-     
+        
+    }
+    else if(res.data.status=='ok' && res.data.user=='Bankadmin'){
+      history('/BankAdmin')
+    }
+    else if(res.data.status=='ok' && res.data.user=='Jewelleryadmin'){
+      history('/JewelleryAdmin')
     }
    
       else if(res.data=='not exist'){
@@ -65,7 +71,7 @@ function App() {
       
       <MDBRow>
 
-        <MDBCol sm='6'>
+        <MDBCol md='6'>
 
           
           <form onSubmit={login}  action="POST">
@@ -86,10 +92,11 @@ function App() {
           <p className='ms-5'>Don't have an account? <a href="/Register" className="link-info">Register here</a></p>
         </MDBCol>
         
-        <MDBCol sm='6' className='d-flex justify-content-center px-0'>
+        <MDBCol md='6' className='d-flex justify-content-center px-0'>
         
           <img src="https://previews.123rf.com/images/teena13/teena131201/teena13120100002/11806916-full-box-of-a-gold-jewelry-on-a-white-background.jpg"
-            alt="Login image" className="w-100 d-flex bottom" style={{objectFit: 'cover', objectPosition: 'left'}} />
+          alt="login page" className="w-100 d-flex fit-content" style={{objectFit: 'cover', objectPosition: 'left'}}>
+          </img>
        
         </MDBCol>
         

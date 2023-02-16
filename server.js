@@ -42,12 +42,12 @@ app.post('/login',async(req,res)=>{
 
     try{
         const check=await collection.findOne({email:email,password:password})
-        
+        const type=check.type
         
         if(check){
            // req.session.email=req.body.email
             
-            console.log(req.session)
+            // console.log(req.session)
            // res.json(req.session.email)
            const token=jwt.sign({
             email:check.email,
@@ -56,7 +56,7 @@ app.post('/login',async(req,res)=>{
            },'secret')
            
         
-        res.json({status:"ok",user:token})
+        res.json({status:"ok",user:type})
            
             
         }
@@ -103,21 +103,21 @@ app.post('/register',async(req,res)=>{
 
 
 app.get('/logout',(req,res)=>{
-    // req.session.destroy((err)=>{
+    req.session.destroy((err)=>{
        
-    //     if(err){
-    //         res.json({success:false})
-    //     }
-    //     else{
-    //         req.logout((err)=>{
-    //             if (err) console.log(`unable to logout`, err);
-    //         })
-    //         req.session=null
-    //         res.json({success:true})
-    //     }
-    // })
-    req.session=null
-    res.json({success:true})
+        if(err){
+            res.json({success:false})
+        }
+        else{
+            req.logout((err)=>{
+                if (err) console.log(`unable to logout`, err);
+            })
+            req.session=null
+            res.json({success:true})
+        }
+    })
+    // req.session=null
+    // res.json({success:true})
 })
 
 app.put('/withdraw',async(req,res)=>{

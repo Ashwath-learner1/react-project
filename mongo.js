@@ -50,6 +50,11 @@ const newschema= new mongoose.Schema({
     withdrawRequest:{
         type:String,
         required:false
+    },
+    type:{
+        type:String,
+        required:true,
+        unique:true
     }
    
 
