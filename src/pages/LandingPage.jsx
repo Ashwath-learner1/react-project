@@ -1,21 +1,23 @@
 
-import React from 'react';
+import React,{ useState } from 'react';
 import './LandingPage.css'
+
 
 import { useNavigate } from 'react-router-dom';
 import Login from '../components/Modal/Login';
-import { useState } from 'react';
+
 import Register from '../components/Modal/Register';
 
 function LandingPage(props) {
 const history=useNavigate()
 const [modalIsOpen, setModalisOpen] = useState(false);
+const [RegistermodalIsOpen, setRegisterModalisOpen] = useState(false);
 
   function login(){
     setModalisOpen(true);
   }
   function register(){
-    setModalisOpen(true);
+    setRegisterModalisOpen(true);
   }
 
 
@@ -25,7 +27,7 @@ const [modalIsOpen, setModalisOpen] = useState(false);
       <button className='login-btn' onClick={login}>Login</button> 
       {modalIsOpen && <Login onLogin={login}/>} 
       <button className='Register-btn' onClick={register}>Register</button>
-      {modalIsOpen && <Register onRegister={register}/>}
+      {RegistermodalIsOpen && <Register onRegister={register}/>}
     </div>
   )
 }

@@ -11,12 +11,45 @@ import {
   MDBIcon
 }
 from 'mdb-react-ui-kit';
+import axios from 'axios';
 
-function Login(props) {
-
-    function LoginModal(){
-        props.onLogin();
+function Login() {
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  
+  async function login(event) {
+    event.preventDefault()
+    await axios.post('http://localhost:5000/login',{
+      email,
+      password
+    }).then(res=>{
+       
+    
+       if(res.data.status=='ok' && res.data.user=='Customer'){
+        history("/CustomerDboard")
+        
+        
     }
+    else if(res.data.status=='ok' && res.data.user=='Bankadmin'){
+      history('/BankAdmin')
+    }
+    else if(res.data.status=='ok' && res.data.user=='Jewelleryadmin'){
+      history('/JewelleryAdmin')
+    }
+   
+      else if(res.data=='not exist'){
+        console.log(res.data)
+        alert("not signed up")
+      }
+    }).catch(e=>{
+      alert("wrong details")
+      console.log(e)
+
+     })
+    
+  }
+
+
   return (
     <MDBContainer fluid>
 
@@ -28,16 +61,18 @@ function Login(props) {
 
               <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
               <p className="text-white-50 mb-5">Please enter your login and password!</p>
-
-              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"/>
-              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"/>
+              <form onClick={login} action="POST">
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"
+             onChange={(e)=>{setEmail(e.target.value)}} />
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"
+              onChange={(e)=>{setPassword(e.target.value)}}/>
 
               <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-              <MDBBtn outline className='mx-2 px-5' color='white' size='lg' onClick={LoginModal}>
+              <MDBBtn outline className='mx-2 px-5' color='white' size='lg' >
                 Login
               </MDBBtn>
-
-              <div className='d-flex flex-row mt-3 mb-5'>
+              </form>
+              {/* <div className='d-flex flex-row mt-3 mb-5'>
                 <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
                   <MDBIcon fab icon='facebook-f' size="lg"/>
                 </MDBBtn>
@@ -49,7 +84,7 @@ function Login(props) {
                 <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
                   <MDBIcon fab icon='google' size="lg"/>
                 </MDBBtn>
-              </div>
+              </div> */}
 
               <div>
                 <p className="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a></p>
@@ -63,6 +98,6 @@ function Login(props) {
 
     </MDBContainer>
   );
-}
 
+            }
 export default Login;
