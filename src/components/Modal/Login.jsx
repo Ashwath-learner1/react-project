@@ -1,4 +1,5 @@
 import React from 'react';
+import './Login.css'
 import {
   MDBBtn,
   MDBContainer,
@@ -12,7 +13,10 @@ import {
 from 'mdb-react-ui-kit';
 
 function Login(props) {
-    
+
+    function LoginModal(){
+        props.onLogin();
+    }
   return (
     <MDBContainer fluid>
 
@@ -29,7 +33,7 @@ function Login(props) {
               <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"/>
 
               <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-              <MDBBtn outline className='mx-2 px-5' color='white' size='lg'>
+              <MDBBtn outline className='mx-2 px-5' color='white' size='lg' onClick={LoginModal}>
                 Login
               </MDBBtn>
 
