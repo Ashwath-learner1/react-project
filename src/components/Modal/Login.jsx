@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Login.css'
 import {
   MDBBtn,
@@ -12,10 +12,12 @@ import {
 }
 from 'mdb-react-ui-kit';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
+  const history=useNavigate()
   
   async function login(event) {
     event.preventDefault()
@@ -23,7 +25,7 @@ function Login() {
       email,
       password
     }).then(res=>{
-       
+       console.log(res.data)
     
        if(res.data.status=='ok' && res.data.user=='Customer'){
         history("/CustomerDboard")
@@ -61,13 +63,11 @@ function Login() {
 
               <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
               <p className="text-white-50 mb-5">Please enter your login and password!</p>
-              <form onClick={login} action="POST">
+              <form onSubmit={login} action="POST">
               <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"
              onChange={(e)=>{setEmail(e.target.value)}} />
-              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg1' type='password' size="lg"
               onChange={(e)=>{setPassword(e.target.value)}}/>
-
-              <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
               <MDBBtn outline className='mx-2 px-5' color='white' size='lg' >
                 Login
               </MDBBtn>
