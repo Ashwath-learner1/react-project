@@ -1,7 +1,16 @@
 .login-btn{
     color: blueviolet;
-    text: Black;
+    /* text: Black; */
 }
 .Register-btn{
     color: blueviolet;
 }
+body{
+    z-index:10;
+}
+/* .register{
+    z-index:20;
+}
+.backdrop{
+    z-index:10;
+} */

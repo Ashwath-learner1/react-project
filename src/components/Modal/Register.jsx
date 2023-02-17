@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDom from 'react-dom'
+
 import './Register.css'
 import {
   MDBBtn,
@@ -17,7 +19,8 @@ function Register(props) {
     function RegisterModal(){
         props.onRegister();
     }
-  return (
+  return React.createPortal (
+    <div className='registermodal'>
     <MDBContainer fluid className='h-custom'>
 
       <MDBRow className='d-flex justify-content-center align-items-center h-100'>
@@ -56,7 +59,7 @@ function Register(props) {
                     </MDBCol>
 
                     <MDBCol md='6'>
-                      <MDBSelect
+                      {/* <MDBSelect
                         className='mb-4'
                         size='lg'
                         data={[
@@ -65,7 +68,7 @@ function Register(props) {
                           { text: 'Three', value: 3 },
                           { text: 'Four', value: 4 }
                         ]}
-                        />
+                        /> */}
                     </MDBCol>
 
                   </MDBRow>
@@ -119,7 +122,10 @@ function Register(props) {
       </MDBRow>
 
     </MDBContainer>
+    </div>,
+    document.getElementById('portal')
   );
+  
 }
 
 export default Register;

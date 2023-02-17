@@ -1,3 +1,4 @@
+
 body {
     /* fallback for old browsers */
     background: #a1c4fd;
@@ -46,3 +47,7 @@ body {
       border-top-right-radius: 15px;
     }
   }
+
+.registermodal{
+  z-index:50;
+}
