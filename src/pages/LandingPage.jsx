@@ -6,6 +6,14 @@ import Login from "../components/Modal/Login";
 import { useState } from "react";
 import Register from "../components/Modal/Register";
 import Backdrop from "../components/Modal/Backdrop";
+import React,{ useState } from 'react';
+import './LandingPage.css'
+
+
+import { useNavigate } from 'react-router-dom';
+import Login from '../components/Modal/Login';
+
+import Register from '../components/Modal/Register';
 
 function LandingPage(props) {
   const navigate = useNavigate();
@@ -43,6 +51,9 @@ function LandingPage(props) {
       
       </>
       )}
+      <button className='login-btn' onClick={login}>Login</button> 
+      <button className='Register-btn' onClick={register}>Register</button>
+      {RegistermodalIsOpen && <Register onRegister={register}/>}
     </div>
   );
 }
