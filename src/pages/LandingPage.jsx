@@ -51,9 +51,7 @@ function LandingPage(props) {
       
       </>
       )}
-      <button className='login-btn' onClick={login}>Login</button> 
-      <button className='Register-btn' onClick={register}>Register</button>
-      {RegistermodalIsOpen && <Register onRegister={register}/>}
+      
     </div>
   );
 }
