@@ -19,7 +19,7 @@ function Register(props) {
     function RegisterModal(){
         props.onRegister();
     }
-  return React.createPortal (
+  return ReactDom.createPortal (
     <div className='registermodal'>
     <MDBContainer fluid className='h-custom'>
 

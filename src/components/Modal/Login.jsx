@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './Login.css'
+import ReactDom from 'react-dom'
 import {
   MDBBtn,
   MDBContainer,
@@ -52,8 +53,8 @@ function Login() {
   }
 
 
-  return (
-    <MDBContainer fluid>
+  return ReactDom.createPortal(
+    <MDBContainer fluid className="loginmodal">
 
       <MDBRow className='d-flex justify-content-center align-items-center h-100'>
         <MDBCol col='12'>
@@ -96,7 +97,8 @@ function Login() {
         </MDBCol>
       </MDBRow>
 
-    </MDBContainer>
+    </MDBContainer>,
+    document.getElementById('portal')
   );
 
             }
