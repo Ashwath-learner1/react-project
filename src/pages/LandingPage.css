@@ -5,12 +5,19 @@
 .Register-btn{
     color: blueviolet;
 }
-body{
-    z-index:10;
-}
+
 /* .register{
     z-index:20;
 }
 .backdrop{
     z-index:10;
 } */
+
+.main-container{
+    z-index:20;
+    position:fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

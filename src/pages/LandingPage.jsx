@@ -25,7 +25,7 @@ function LandingPage(props) {
   }
 
   return (
-    <div>
+    <div className="main-container">
       <h1>Hi selva please work on the landing page,thank you</h1>
       <button className="login-btn" onClick={login} >
         Login
