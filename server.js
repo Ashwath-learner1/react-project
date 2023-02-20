@@ -1,4 +1,4 @@
-import express, { json, request } from 'express'
+import express from 'express'
 const app=express()
 // import mongoose, { Collection } from 'mongoose'
 import cors from 'cors'
@@ -70,8 +70,8 @@ app.post('/login',async(req,res)=>{
 })
 
 app.post('/register',async(req,res)=>{
-    const {Name,Age,address,AadharNo,PANno,PhoneNo,email,password}=req.body
-    const data={
+    const {Name,Age,address,AadharNo,PANno,PhoneNo,email,password,type}=req.body
+    const datas={
         Name:Name,
         Age:Age,
         address:address,
@@ -79,7 +79,8 @@ app.post('/register',async(req,res)=>{
         PhoneNo:PhoneNo,
         PANno:PANno,
         email:email,
-        password:password
+        password:password,
+        type:type
     }
 
     try{
@@ -88,11 +89,17 @@ app.post('/register',async(req,res)=>{
         
         if(check){
             res.json('exists')
+           
         }
-        else{
-            res.json('not exist')
-            await collection.insertMany([data])
+        else {
+           
+           
+            
+            res.json({data:'not exist'})
+            const check1=await collection.insertMany([datas])
+            console.log(check1)
         }
+        // 
         
     }
     catch(e){
@@ -112,7 +119,7 @@ app.get('/logout',(req,res)=>{
             req.logout((err)=>{
                 if (err) console.log(`unable to logout`, err);
             })
-            req.session=null
+            // req.session=null
             res.json({success:true})
         }
     })

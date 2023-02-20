@@ -26,8 +26,7 @@ function Login() {
       email,
       password
     }).then(res=>{
-       console.log(res.data)
-    
+       
        if(res.data.status=='ok' && res.data.user=='Customer'){
         history("/CustomerDboard")
         

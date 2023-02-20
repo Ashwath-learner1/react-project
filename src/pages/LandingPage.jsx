@@ -1,14 +1,14 @@
 import React from "react";
 import "./LandingPage.css";
 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Login from "../components/Modal/Login";
 import { useState } from "react";
 import Register from "../components/Modal/Register";
 import Backdrop from "../components/Modal/Backdrop";
 
 function LandingPage(props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isRegistermodalOpen, setRegisterModalOpen] = useState(false);
   function login() {
@@ -26,7 +26,7 @@ function LandingPage(props) {
 
   return (
     <div className="main-container">
-      <h1>Hi selva please work on the landing page,thank you</h1>
+      <h1>Header</h1>
       <button className="login-btn" onClick={login} >
         Login
       </button>
