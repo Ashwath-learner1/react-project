@@ -14,6 +14,7 @@ import {
 from 'mdb-react-ui-kit';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+// import jwt from 'jsonwebtoken'
 
 function Login() {
   const [email,setEmail]=useState('')
@@ -28,6 +29,8 @@ function Login() {
     }).then(res=>{
        
        if(res.data.status=='ok' && res.data.user=='Customer'){
+        
+        
         history("/CustomerDboard")
         
         

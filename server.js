@@ -17,7 +17,7 @@ app.use(session(
         resave:true,
         saveUninitialized:true,
         cookie:{
-            maxAge:30000
+            maxAge:3000000
         }
     }
     ))
@@ -56,7 +56,7 @@ app.post('/login',async(req,res)=>{
            },'secret')
            
         
-        res.json({status:"ok",user:type})
+        res.json({status:"ok",user:type,token:token})
            
             
         }
@@ -70,7 +70,7 @@ app.post('/login',async(req,res)=>{
 })
 
 app.post('/register',async(req,res)=>{
-    const {Name,Age,address,AadharNo,PANno,PhoneNo,email,password,type}=req.body
+    const {Name,Age,address,AadharNo,PANno,PhoneNo,email,password,type,withdrawRequest}=req.body
     const datas={
         Name:Name,
         Age:Age,
@@ -80,9 +80,10 @@ app.post('/register',async(req,res)=>{
         PANno:PANno,
         email:email,
         password:password,
-        type:type
+        type:type,
+        withdrawRequest:withdrawRequest
     }
-
+    
     try{
         const check=await collection.findOne({email:email,password:password})
         
@@ -92,12 +93,13 @@ app.post('/register',async(req,res)=>{
            
         }
         else {
-           
-           
             
-            res.json({data:'not exist'})
+            
             const check1=await collection.insertMany([datas])
-            console.log(check1)
+            
+            return res.json('not exist')
+            
+           
         }
         // 
         

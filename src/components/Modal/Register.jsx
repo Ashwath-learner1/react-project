@@ -25,7 +25,8 @@ function Register(  ) {
   const [address,setAddress]=useState('')
   const [password,setPassword]=useState('')
   const [PhoneNo,setPhoneNo]=useState('')
-  const type=useState('Customer')
+  const [type,setType]=useState('Customer')
+  const [withdrawRequest,setWithdrawRequest]=useState('No')
   const history=useNavigate();
 
   async function register(event) {
@@ -38,18 +39,20 @@ function Register(  ) {
       PANno,
       PhoneNo,
       email,
-      password,type
+      password,
+      type,
+      withdrawRequest
 	
     }).then(res=>{
       if(res.data=='exists'){   
         
         alert("already signed up")
-       history("/")
+       history("/LandingPage")
        
       }
       else if(res.data=='not exist'){
-        alert("New user added")
-        history("/")
+        alert("You're account has been successfully created.")
+        history("/LandingPage")
       }
     }).catch(e=>{
       alert("wrong details")
@@ -65,17 +68,20 @@ function Register(  ) {
     <MDBContainer fluid className='h-custom'>
 
       <MDBRow className='d-flex justify-content-center align-items-center h-100'>
+      
         <MDBCol col='12' className='m-5'>
-
+        
           <MDBCard className='card-registration card-registration-2' style={{borderRadius: '15px'}}>
             
             <MDBCardBody className='p-0'>
+           
             <form onSubmit={register} action="POST">
               <MDBRow>
-                
+              
                 <MDBCol md='6' className='p-5 bg-black'>
 
                   <h3 className="fw-normal mb-5" style={{color: 'white'}}>General Infomation</h3>
+                  
                   <MDBInput wrapperClass='mb-4' label='Name' size='lg' id='form1' type='text' labelClass='text-white' className='text-white'
                   onChange={(e)=>{setName(e.target.value)}}/>
                   <MDBInput wrapperClass='mb-4' label='Age' size='lg' id='form2' type='text' labelClass='text-white' className='text-white'
@@ -88,31 +94,38 @@ function Register(  ) {
                   onChange={(e)=>{setPANno(e.target.value)}}/>
                   <MDBInput wrapperClass='mb-4' label='Aadhar No' size='lg' id='form6' type='text' labelClass='text-white' className='text-white'
                   onChange={(e)=>{setAadharNo(e.target.value)}}/>
-
+                  {/* <MDBInput wrapperClass='mb-4' labelClass='text-white' label='Email' size='lg' id='form8' type='email' className='text-white'
+                  onChange={(e)=>{setEmail(e.target.value)}}/>
+                  <MDBInput wrapperClass='mb-4' labelClass='text-white' label='Password' size='lg' id='form9' type='password' className='text-black'
+                  onChange={(e)=>{setPassword(e.target.value)}}/>
+                  <MDBBtn color='dark' size='lg' >Register</MDBBtn>
+                   */}
+                   
 
 
                 </MDBCol>
 
-
+                
                 <MDBCol md='6' className='bg-indigo p-5'>
 
                   <h3 className="fw-normal mb-5 text-white" style={{color: '#4835d4'}}>Create Your account </h3>
-                  
-
-                  
                   <MDBInput wrapperClass='mb-4' labelClass='text-white' label='Email' size='lg' id='form8' type='email' className='text-white'
                   onChange={(e)=>{setEmail(e.target.value)}}/>
                   <MDBInput wrapperClass='mb-4' labelClass='text-white' label='Password' size='lg' id='form9' type='password' className='text-black'
                   onChange={(e)=>{setPassword(e.target.value)}}/>
                   <MDBBtn color='dark' size='lg' >Register</MDBBtn>
 
+                  
+                  
+                  
                 </MDBCol>
+               
               </MDBRow>
               </form>
             </MDBCardBody>
-           
+            
           </MDBCard>
-
+        
         </MDBCol>
       </MDBRow>
 

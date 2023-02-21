@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import './Withdraw.css'
 
 function Withdraw() {
   const [status, setStatus] = useState('');
@@ -26,7 +27,7 @@ function Withdraw() {
         <button className="yes" onClick={withdraw}>Yes</button>
         <button className="no">No</button>
       </div>
-      <h2>Status: {status}</h2>
+      
     </div>
   );
 }
