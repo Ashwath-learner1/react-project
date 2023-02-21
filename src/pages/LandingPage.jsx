@@ -1,5 +1,8 @@
 import React from "react";
 import "./LandingPage.css";
+import Header from"../components/Header/Header"
+import Footer from"../components/Header/Footer"
+
 
 // import { useNavigate } from "react-router-dom";
 import Login from "../components/Modal/Login";
@@ -27,6 +30,7 @@ function LandingPage(props) {
   return (
     <div className="main-container">
       <h1>Header</h1>
+      <Header/>
       <button className="login-btn" onClick={login} >
         Login
       </button>
@@ -45,7 +49,7 @@ function LandingPage(props) {
       
       </>
       )}
-      
+      <Footer/>
     </div>
   );
 }

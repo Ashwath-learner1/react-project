@@ -10,6 +10,8 @@ import JewelleryAdmin from "./pages/JewelleryAdmin";
 import BankAdmin from "./pages/BankAdmin";
 import Payment from "./pages/Payment";
 import Withdraw from "./pages/Withdraw";
+import Header from "./components/Header/Header";
+import Footer from "./components/Header/Footer";
 import Register from "./pages/Register";
 import LandingPage from "./pages/LandingPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -25,6 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path={"/Withdraw"} exact element={<Withdraw />} />
         <Route path={"/Register"} exact element={<Register />} />
         <Route path={"/LandingPage"} exact element={<LandingPage/>}/>
+        <Route path={"/Header"} exact element={<Header/>}/>
+        <Route path={"/Footer"} exact element={<Footer/>}></Route>
       </Routes>
     </Router>
   </React.StrictMode>
